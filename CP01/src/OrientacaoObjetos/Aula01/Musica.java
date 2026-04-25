@@ -1,4 +1,4 @@
-package OrientacaoObjetos;
+package OrientacaoObjetos.Aula01;
 
 public class Musica {
     String titulo;
