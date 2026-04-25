@@ -1,17 +1,19 @@
+package OrientacaoObjetos;
+
 public class Principal {
     public static void main(String[] args) {
-        // Testando Classe Pessoas
-        //Pessoas pessoas = new Pessoas();
+        // Testando Classe OrientacaoObjetos.Pessoas
+        //OrientacaoObjetos.Pessoas pessoas = new OrientacaoObjetos.Pessoas();
         //System.out.println( pessoas.olaMundo());
 
 
-        //Testando Classe Calculadora
-        //Calculadora calculadora = new Calculadora();
+        //Testando Classe OrientacaoObjetos.Calculadora
+        //OrientacaoObjetos.Calculadora calculadora = new OrientacaoObjetos.Calculadora();
         //int resultado = calculadora.dobrarNumero(5);
         //System.out.println(resultado);
 
-        //Testando Classe Musica
-//        Musica musica = new Musica();
+        //Testando Classe OrientacaoObjetos.Musica
+//        OrientacaoObjetos.Musica musica = new OrientacaoObjetos.Musica();
 //        musica.titulo= "Evidências";
 //        musica.artista= "Chitãozinho & Xororó";
 //        musica.anoLancamento = 1990;
@@ -23,7 +25,7 @@ public class Principal {
 //        System.out.println("A média das avaliações é: "+ musica.calcularMediaAvaliacoes());
 
         //Testando Classe Carros
-//        Carro carro = new Carro();
+//        OrientacaoObjetos.Carro carro = new OrientacaoObjetos.Carro();
 //        carro.modelo = "HB20";
 //        carro.ano = 2022;
 //        carro.cor = "Branco";
@@ -31,8 +33,8 @@ public class Principal {
 //        System.out.println("Idade do carro: " + carro.calcularIdade(2026));
 
 
-        //Testando Classe Aluno
-//        Aluno aluno = new Aluno();
+        //Testando Classe OrientacaoObjetos.Aluno
+//        OrientacaoObjetos.Aluno aluno = new OrientacaoObjetos.Aluno();
 //        aluno.nome = "Leonardo";
 //        aluno.idade = 17;
 //        aluno.exibirDados();

@@ -1,3 +1,5 @@
+package Condicionais;
+
 import java.util.Scanner;
 
 public class ComparandoNumeros {

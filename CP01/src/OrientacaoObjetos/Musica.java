@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package OrientacaoObjetos;
 
 public class Musica {
     String titulo;
