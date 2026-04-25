@@ -4,7 +4,7 @@ public class Veiculo {
     //Atributos
     private String modelo;
     private int ano;
-    private boolean disponivel;
+    private boolean disponivel = true;
     private String placa;
     private String cor;
     private String tipo;
@@ -30,9 +30,6 @@ public class Veiculo {
     public boolean isDisponivel() {
         return disponivel;
     }
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
 
     //Placa
     public String getPlaca() {
@@ -57,4 +54,15 @@ public class Veiculo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    //Métodos
+    //Alugar
+    public void alugar(){
+        disponivel = false;
+    }
+    //Devolver
+    public void devolver(){
+        disponivel = true;
+    }
+
 }
