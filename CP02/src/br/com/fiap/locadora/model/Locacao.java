@@ -1,6 +1,9 @@
 package br.com.fiap.locadora.model;
 
+import java.util.Scanner;
+
 public class Locacao {
+    Scanner leitor = new Scanner(System.in);
     //Atributos
     private Cliente cliente;
     private Veiculo veiculo;
@@ -55,9 +58,13 @@ public class Locacao {
     }
 
     //Métodos
-    public boolean iniciarLocacao() {
+    public boolean iniciarLocacao(String dataInicio) {
+        if (cliente == null || veiculo == null) {
+            return false;
+        }
+
         if (veiculo.isDisponivel() && !cliente.isPossuiLocacao()) {
-            setDataInicio("12/10/2026");
+            setDataInicio(this.dataInicio);
             veiculo.alugar();
             cliente.alugarVeiculo();
             return true;
@@ -65,9 +72,9 @@ public class Locacao {
             return false;
         }
     }
-    public boolean finalizarLocacao(){
+    public boolean finalizarLocacao(String dataFim){
         if (!veiculo.isDisponivel() && cliente.isPossuiLocacao()){
-            setDataFim("20/10/2026");
+            setDataFim(dataFim);
             veiculo.devolver();
             cliente.devolverVeiculo();
             return true;

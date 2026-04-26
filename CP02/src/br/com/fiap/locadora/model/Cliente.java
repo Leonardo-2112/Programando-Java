@@ -1,5 +1,7 @@
 package br.com.fiap.locadora.model;
 
+import java.util.Scanner;
+
 public class Cliente {
     //Atributos
     private String nome;
@@ -51,5 +53,15 @@ public class Cliente {
 
     public void devolverVeiculo() {
         possuiLocacao = false;
+    }
+
+    public void cadastrarCliente(){
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("Digite o Nome: ");
+        setNome(leitor.nextLine());
+        System.out.println("Digite o CPF: ");
+        setCpf(leitor.nextLine());
+        System.out.println("Digite o Telefone: ");
+        setTelefone(leitor.nextLine());
     }
 }
