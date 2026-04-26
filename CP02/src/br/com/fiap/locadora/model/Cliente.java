@@ -36,7 +36,20 @@ public class Cliente {
     public boolean isPossuiLocacao() {
         return possuiLocacao;
     }
-    public void setPossuiLocacao(boolean possuiLocacao) {
-        this.possuiLocacao = possuiLocacao;
+
+    //Métodos
+    public boolean podeAlugar(){
+        if (possuiLocacao){
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public void alugarVeiculo() {
+        possuiLocacao = true;
+    }
+
+    public void devolverVeiculo() {
+        possuiLocacao = false;
     }
 }

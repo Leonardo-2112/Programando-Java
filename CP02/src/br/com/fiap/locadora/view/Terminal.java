@@ -1,5 +1,6 @@
 package br.com.fiap.locadora.view;
 
+import br.com.fiap.locadora.model.Cliente;
 import br.com.fiap.locadora.model.Veiculo;
 
 public class Terminal {
@@ -33,5 +34,30 @@ public class Terminal {
         System.out.println("\nDevolvendo veículo...");
         carro.devolver();
         System.out.println("Disponível após devolução: " + carro.isDisponivel());
+
+        // Criando cliente
+        Cliente cliente = new Cliente();
+        cliente.setNome("Leonardo");
+        cliente.setCpf("123.456.789-00");
+        cliente.setTelefone("11999999999");
+
+        // Verificando estado inicial
+        System.out.println("Pode alugar ? " + cliente.podeAlugar());
+        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
+
+        // Alugando veículo
+        System.out.println("\n--- Alugando veículo ---");
+        cliente.alugarVeiculo();
+
+        System.out.println("Pode alugar ? " + cliente.podeAlugar());
+        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
+
+        // Devolvendo veículo
+        System.out.println("\n--- Devolvendo veículo ---");
+        cliente.devolverVeiculo();
+
+        System.out.println("Pode alugar ? " + cliente.podeAlugar());
+        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
     }
+
 }
