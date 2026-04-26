@@ -5,7 +5,7 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
-    private boolean possuiLocacao;
+    private boolean possuiLocacao = false;
 
     //Getters e Setters
     //Nome

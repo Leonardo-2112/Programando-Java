@@ -1,63 +1,48 @@
 package br.com.fiap.locadora.view;
 
 import br.com.fiap.locadora.model.Cliente;
+import br.com.fiap.locadora.model.Locacao;
 import br.com.fiap.locadora.model.Veiculo;
 
 public class Terminal {
     public static void main(String[] args) {
-        // Criando objeto
-        Veiculo carro = new Veiculo();
-
-        // Definindo valores
-        carro.setModelo("Civic");
-        carro.setAno(2022);
-        carro.setPlaca("ABC-1234");
-        carro.setCor("Preto");
-        carro.setTipo("Sedan");
-
-        // Exibindo dados iniciais
-        System.out.println("=== DADOS DO VEÍCULO ===");
-        System.out.println("Modelo: " + carro.getModelo());
-        System.out.println("Ano: " + carro.getAno());
-        System.out.println("Placa: " + carro.getPlaca());
-        System.out.println("Cor: " + carro.getCor());
-        System.out.println("Tipo: " + carro.getTipo());
-        System.out.println("Disponível: " + carro.isDisponivel());
-        // Veículo já começa como disponível
-
-        // Testando aluguel
-        System.out.println("\nAlugando veículo...");
-        carro.alugar();
-        System.out.println("Disponível após aluguel: " + carro.isDisponivel());
-
-        // Testando devolução
-        System.out.println("\nDevolvendo veículo...");
-        carro.devolver();
-        System.out.println("Disponível após devolução: " + carro.isDisponivel());
-
         // Criando cliente
         Cliente cliente = new Cliente();
         cliente.setNome("Leonardo");
         cliente.setCpf("123.456.789-00");
         cliente.setTelefone("11999999999");
 
-        // Verificando estado inicial
-        System.out.println("Pode alugar ? " + cliente.podeAlugar());
-        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
+        // Criando veículo
+        Veiculo veiculo = new Veiculo();
 
-        // Alugando veículo
-        System.out.println("\n--- Alugando veículo ---");
-        cliente.alugarVeiculo();
+        // Criando locação
+        Locacao locacao = new Locacao();
+        locacao.setCliente(cliente);
+        locacao.setVeiculo(veiculo);
+        locacao.setId(1);
 
-        System.out.println("Pode alugar ? " + cliente.podeAlugar());
-        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
+        // Estado inicial
+        System.out.println("=== ESTADO INICIAL ===");
+        System.out.println("Veículo disponível: " + veiculo.isDisponivel());
+        System.out.println("Cliente pode alugar: " + cliente.podeAlugar());
 
-        // Devolvendo veículo
-        System.out.println("\n--- Devolvendo veículo ---");
-        cliente.devolverVeiculo();
+        // Tentando iniciar locação
+        System.out.println("\n=== INICIANDO LOCAÇÃO ===");
+        boolean iniciou = locacao.iniciarLocacao();
 
-        System.out.println("Pode alugar ? " + cliente.podeAlugar());
-        System.out.println("Possui locação ? " + cliente.isPossuiLocacao());
+        System.out.println("Locação iniciada? " + iniciou);
+        System.out.println("Veículo disponível: " + veiculo.isDisponivel());
+        System.out.println("Cliente possui locação: " + cliente.isPossuiLocacao());
+        System.out.println("Data início: " + locacao.getDataInicio());
+
+        // Tentando finalizar locação
+        System.out.println("\n=== FINALIZANDO LOCAÇÃO ===");
+        boolean finalizou = locacao.finalizarLocacao();
+
+        System.out.println("Locação finalizada? " + finalizou);
+        System.out.println("Veículo disponível: " + veiculo.isDisponivel());
+        System.out.println("Cliente possui locação: " + cliente.isPossuiLocacao());
+        System.out.println("Data fim: " + locacao.getDataFim());
     }
 
 }
