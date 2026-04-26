@@ -1,7 +1,10 @@
 package br.com.alura.screenmatch.modelos;
 
-//Herença (Filme é um Titulo, ou seja, a classe Filme herda oq tem na classe Titulo)
-public class Filme extends Titulo {
+import br.com.alura.screenmatch.calculos.Classificavel;
+
+//extend -> Herença (Filme é um Titulo, ou seja, a classe Filme herda oq tem na classe Titulo)
+//implements -> Implementa a classe Classificavel
+public class Filme extends Titulo implements Classificavel {
     //Atributos
     private String diretor;
 
@@ -12,5 +15,10 @@ public class Filme extends Titulo {
     }
     public void setDiretor(String diretor) {
         this.diretor = diretor;
+    }
+
+    @Override
+    public int getClassificacao() {
+        return (int) pegaMedia() / 2;
     }
 }
