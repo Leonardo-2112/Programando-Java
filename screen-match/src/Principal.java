@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Principal {
     public static void main(String[] args) {
         //Instancia o objeto Filme
-        Filme meuFilme = new Filme();
+        Filme meuFilme = new Filme("O poderoso chefão", 1970);
         //Atribui valores ao objeto Filme
-        meuFilme.setNome("O poderoso chefão");
-        meuFilme.setAnoDeLancamento(1970);
+        //meuFilme.setNome("O poderoso chefão");
+        //meuFilme.setAnoDeLancamento(1970);
         meuFilme.setDuracaoEmMinutos(180);
         meuFilme.setIncluidoNoPlano(true);
         meuFilme.avaliacao(8);
@@ -25,10 +25,10 @@ public class Principal {
         System.out.println("==================================================================\n");
 
         //Instancia o objeto Serie
-        Serie lost = new Serie();
+        Serie lost = new Serie("Lost", 200);
         //Atribui valores ao objeto Serie
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2000);
+        //lost.setNome("Lost");
+        //lost.setAnoDeLancamento(2000);
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporada(10);
         lost.setMinutosPorEpisodio(50);
@@ -43,10 +43,10 @@ public class Principal {
         System.out.println("==================================================================\n");
 
         //Instancia o objeto Filme
-        Filme outroFilme = new Filme();
+        Filme outroFilme = new Filme("Avatar", 2023);
         //Atribui valores ao objeto Filme
-        outroFilme.setNome("Avatar");
-        outroFilme.setAnoDeLancamento(2023);
+        //outroFilme.setNome("Avatar");
+        //outroFilme.setAnoDeLancamento(2023);
         outroFilme.setDuracaoEmMinutos(200);
         outroFilme.setIncluidoNoPlano(false);
         outroFilme.avaliacao(8);
@@ -74,10 +74,10 @@ public class Principal {
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
 
-        Filme filmePaulo = new Filme();
+        Filme filmePaulo = new Filme("Dogville", 2003);
         filmePaulo.setDuracaoEmMinutos(200);
-        filmePaulo.setNome("Dogville");
-        filmePaulo.setAnoDeLancamento(2003);
+        //filmePaulo.setNome("Dogville");
+        //filmePaulo.setAnoDeLancamento(2003);
         filmePaulo.avaliacao(10);
 
         ArrayList <Filme> listaDeFilme = new ArrayList<>();
@@ -87,7 +87,7 @@ public class Principal {
         System.out.println("Tamanho da lista " + listaDeFilme.size());//Lista o tamanho da lista
         System.out.println("Primeiro Filme " + listaDeFilme.get(0).getNome());//listadeFIlme.get(0) -> Lista a primeira posição
                                                                               //.getNome(0) Lista o nome referente a posição descrita anteriormente
-
         System.out.println(listaDeFilme);
+        System.out.println("toString" + listaDeFilme.get(0).toString());
     }
 }
