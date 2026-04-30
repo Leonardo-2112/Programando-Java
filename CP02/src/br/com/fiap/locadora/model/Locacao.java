@@ -1,9 +1,6 @@
 package br.com.fiap.locadora.model;
 
-import java.util.Scanner;
-
 public class Locacao {
-    Scanner leitor = new Scanner(System.in);
     //Atributos
     private Cliente cliente;
     private Veiculo veiculo;
@@ -11,75 +8,55 @@ public class Locacao {
     private String dataFim;
     private int id;
 
-    //Getters e Setters
-    //Cliente
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
+    // Construtor
+    public Locacao(int id, Cliente cliente, Veiculo veiculo, String dataInicio, String dataFim) {
+        this.id = id;
         this.cliente = cliente;
-    }
-
-    //Veiculo
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
-    }
-
-    //Data de Início
-    public String getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    //Data de Fim
-    public String getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(String dataFim) {
         this.dataFim = dataFim;
+
+        // Muda status do cliente e do veículo
+        cliente.setPossuiLocacao(true);
+        veiculo.setDisponivel(false);
     }
 
-    //Id
+    // Getters
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public String getDataFim() {
+        return dataFim;
+    }
     //Métodos
-    public boolean iniciarLocacao(String dataInicio) {
-        if (cliente == null || veiculo == null) {
-            return false;
-        }
-
-        if (veiculo.isDisponivel() && !cliente.isPossuiLocacao()) {
-            setDataInicio(this.dataInicio);
-            veiculo.alugar();
-            cliente.alugarVeiculo();
-            return true;
-        } else {
-            return false;
-        }
+    public void iniciarLocacao() {
+        this.cliente.setPossuiLocacao(true);
+        this.veiculo.setDisponivel(false);
     }
-    public boolean finalizarLocacao(String dataFim){
-        if (!veiculo.isDisponivel() && cliente.isPossuiLocacao()){
-            setDataFim(dataFim);
-            veiculo.devolver();
-            cliente.devolverVeiculo();
-            return true;
-        }else {
-            return false;
-        }
+
+    public void finalizarLocacao() {
+        this.cliente.setPossuiLocacao(false);
+        this.veiculo.setDisponivel(true);
+    }
+
+    @Override
+    public String toString() {
+        return "\nID: " + id + "\nCliente: " + cliente.getNome() + "\nVeículo: " + veiculo.getModelo() + "\nData Início: " + dataInicio + "\nData Fim: " + dataFim + "\n\n";
     }
 }
+
+
+
