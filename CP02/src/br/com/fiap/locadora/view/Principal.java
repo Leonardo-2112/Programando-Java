@@ -7,6 +7,9 @@ import br.com.fiap.locadora.model.Veiculo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static br.com.fiap.locadora.model.Locacao.indiceLocacaoValido;
+import static br.com.fiap.locadora.model.Locacao.indicesValidos;
+
 public class Principal {
         public static void main(String[] args) {
             ArrayList<Cliente> clientes = new ArrayList();
@@ -31,14 +34,11 @@ public class Principal {
                     case 1:
                         System.out.println("Digite os dados do cliente para cadastro");
                         System.out.println("Nome: ");
-                        String var26 = leitor.next();
-                        String nome = var26 + leitor.nextLine();
+                        String nome = leitor.next() + leitor.nextLine();;
                         System.out.println("Cpf: ");
-                        var26 = leitor.next();
-                        String cpf = var26 + leitor.nextLine();
+                        String cpf = leitor.next() + leitor.nextLine();
                         System.out.println("Telefone: ");
-                        var26 = leitor.next();
-                        String telefone = var26 + leitor.nextLine();
+                        String telefone = leitor.next() + leitor.nextLine();
                         clientes.add(new Cliente(nome, cpf, telefone));
                         System.out.println("Cliente Inserido com Sucesso!");
                         break;
@@ -49,42 +49,52 @@ public class Principal {
                     case 3:
                         System.out.println("Digite os dados do veículo para cadastro:");
                         System.out.println("Modelo: ");
-                        String var10000 = leitor.nextLine();
-                        String modelo = var10000 + leitor.next();
+                        String modelo = leitor.next();
                         System.out.println("Ano: ");
                         int ano = leitor.nextInt();
                         System.out.println("Cor: ");
-                        var10000 = leitor.nextLine();
-                        String cor = var10000 + leitor.next();
+                        String cor = leitor.next() + leitor.nextLine();
                         System.out.println("Placa: ");
-                        var10000 = leitor.nextLine();
-                        String placa = var10000 + leitor.next();
+                        String placa =leitor.next() + leitor.nextLine();
                         System.out.println("Tipo de Veículo: ");
-                        var10000 = leitor.next();
-                        String tipo = var10000 + leitor.nextLine();
+                        String tipo = leitor.next() + leitor.nextLine();
+                        //Adiciona Veículo a lista
                         veiculos.add(new Veiculo(tipo, cor, placa, ano, modelo));
                         System.out.println("\nVeículo Cadastrado com Sucesso");
                         break;
                     case 4:
                         System.out.println("\nVeículos Cadastrados: ");
+                        //Exibe a Lista de Veículos
                         System.out.println(veiculos);
                         break;
                     case 5:
+                        //Verifica se há Clientes ou Veiculos na lista
+                        if (!Locacao.verificarCadastro(clientes, veiculos)) {
+                            break;
+                        }
+
                         System.out.println("Digite a posição do cliente na lista (começa do zero): ");
                         int iCliente = leitor.nextInt();
                         System.out.println("Digite a posição do veículo na lista (começa do zero): ");
                         int iVeiculo = leitor.nextInt();
+
+                        //Verifica se há valor no indice escolhido pelo cliente (tanto em veículo e cliente)
+                        if (!indicesValidos(iCliente, iVeiculo, clientes, veiculos)) {
+                            break;
+                        }
+
                         Cliente c = (Cliente)clientes.get(iCliente);
                         Veiculo v = (Veiculo)veiculos.get(iVeiculo);
+                        //Verifica se o Cliente ja tem algum veículo alugado através do get
                         if (c.isPossuiLocacao()) {
                             System.out.println("Cliente já possui um veículo alugado!");
-                        } else if (!v.isDisponivel()) {
+                        } else if (!v.isDisponivel()) {//Verifica se o Veiculo ja tem algum Cliente atarvés do get
                             System.out.println("Veículo já está alugado!");
                         } else {
                             System.out.println("Data início:");
-                            String inicio = leitor.next();
+                            String inicio = leitor.next() + leitor.nextLine();
                             System.out.println("Data fim:");
-                            String fim = leitor.next();
+                            String fim =leitor.next() + leitor.nextLine();
                             locacoes.add(new Locacao(locacoes.size() + 1, c, v, inicio, fim));
                             System.out.println("Locação realizada com sucesso!");
                         }
@@ -94,15 +104,16 @@ public class Principal {
                         System.out.println(locacoes);
                         System.out.println("Digite a posição da locação na lista para devolução (começa com 0):");
                         int indiceLocacao = leitor.nextInt();
-                        if (indiceLocacao >= 0 && indiceLocacao < locacoes.size()) {
-                            Locacao loc = (Locacao)locacoes.get(indiceLocacao);
-                            loc.finalizarLocacao();
-                            locacoes.remove(indiceLocacao);
-                            System.out.println("Veículo devolvido com sucesso!");
+
+                        //Verifica se o indice digitado pelo cliente tem algum valor
+                        if (!indiceLocacaoValido(indiceLocacao, locacoes)) {
                             break;
                         }
+                        Locacao loc = locacoes.get(indiceLocacao);
+                        loc.finalizarLocacao();
+                        locacoes.remove(indiceLocacao);
 
-                        System.out.println("Índice inválido!");
+                        System.out.println("Veículo devolvido com sucesso!");
                         break;
                     case 7:
                         System.out.println("Sindo...");
