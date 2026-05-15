@@ -4,6 +4,10 @@ public class Professor extends Pessoa{
     private double salario;
     private boolean scrumMaster;
 
+    public Professor(String nome, String cpf, int idade, Endereco endereco) {
+        super(nome, cpf, idade, endereco);
+    }
+
     public double getSalario() {
         return salario;
     }
