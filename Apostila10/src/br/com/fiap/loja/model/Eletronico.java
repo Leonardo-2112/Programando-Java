@@ -9,6 +9,24 @@ public class Eletronico extends Produto{
         this.garantia = garantia;
         this.voltagem = voltagem;
     }
+    //Sobreescrita do metodo de calcular desconto
+    @Override
+    public double calcularDesconto() {
+        return preco * 0.80;
+    }
+
+    @Override
+    public double calcularDesconto(String cupom) {
+        if (cupom.equals("ELET40"))
+            return calcularDesconto(40);
+        return super.calcularDesconto(cupom);
+    }
+
+    @Override
+    public String toString() {
+
+        return super.toString() + "\nGarantia: " + garantia + "\nVoltagem: " + voltagem + "v";
+    }
 
     public Eletronico(double preco, String nome, boolean garantia) {
         super(preco, nome);

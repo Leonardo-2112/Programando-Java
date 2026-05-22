@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Produto {
     private int id;
-    private double preco;
+    protected double preco;
     private String nome;
 
     public Produto(int id, double preco, String nome) {
@@ -17,6 +17,17 @@ public class Produto {
         this.preco = preco;
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nNome: " + nome + "\nPreço: R$" + preco;
+    }
+
+    //Retorna o preço com 10% de desconto
+    public double calcularDesconto(){
+        return preco * 0.9;
+    }
+
 
     //Retorna o preço do produto com o desconto]
     public double calcularDesconto(int porcentagem){
