@@ -8,8 +8,8 @@ public class Exemplo02 {
         //Criar uma lista do nome
         List<String> nomes = new ArrayList<>();
         //Adicionar 2 nomes
-        nomes.add("Leonardo PERFEITO");
-        nomes.add("Syang IMPERFEITA");
+        nomes.add("Leonardo");
+        nomes.add("Syang");
         //verificar se os nomes existem
         if (nomes.isEmpty()){
             System.out.println("A lista está vazia");
@@ -19,7 +19,7 @@ public class Exemplo02 {
         }
 
         //Validar nome na lista
-        System.out.println("Leonardo está na lista? " + nomes.contains("Leonardo PERFEITO"));
+        System.out.println("Leonardo está na lista? " + nomes.contains("Leonardo"));
 
         //Recuperar primeiro nome da lista
         System.out.println(nomes.getFirst());

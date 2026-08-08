@@ -13,6 +13,11 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    @Override
+    public String toString() {
+        return "Modelo: " + getModelo() + "\nAno: " + getAno()+ "\nPlaca: " + getPlaca()+ "\n";
+    }
+
     //Getters and Setters
     public String getPlaca() {
         return placa;
