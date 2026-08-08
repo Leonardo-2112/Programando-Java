@@ -2,8 +2,8 @@
 <module version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../Apostila05-exercicios">
-      <sourceFolder url="file://$MODULE_DIR$/../../Apostila05-exercicios/src" isTestSource="false" />
+    <content url="file://$USER_HOME$/Apostila05-exercicios">
+      <sourceFolder url="file://$USER_HOME$/Apostila05-exercicios/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

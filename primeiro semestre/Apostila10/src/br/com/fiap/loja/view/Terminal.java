@@ -1,7 +1,6 @@
 package br.com.fiap.loja.view;
 
 import br.com.fiap.loja.model.Eletronico;
-import br.com.fiap.loja.model.Produto;
 
 import java.util.Scanner;
 

@@ -2,26 +2,29 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Apostila03/Apostila03.iml" filepath="$PROJECT_DIR$/Apostila03/Apostila03.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila04/Apostila04.iml" filepath="$PROJECT_DIR$/Apostila04/Apostila04.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila04-Exercicios/Apostila04-Exercicios.iml" filepath="$PROJECT_DIR$/Apostila04-Exercicios/Apostila04-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila05/Apostila05.iml" filepath="$PROJECT_DIR$/Apostila05/Apostila05.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila05-exercicios/Apostila05-Exercicios.iml" filepath="$PROJECT_DIR$/Apostila05-exercicios/Apostila05-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila06/Apostila06.iml" filepath="$PROJECT_DIR$/Apostila06/Apostila06.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila07/Apostila07.iml" filepath="$PROJECT_DIR$/Apostila07/Apostila07.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila07-Exercicios/Apostila07-Exercicios.iml" filepath="$PROJECT_DIR$/Apostila07-Exercicios/Apostila07-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila08/Apostila08.iml" filepath="$PROJECT_DIR$/Apostila08/Apostila08.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila09/Apostila09.iml" filepath="$PROJECT_DIR$/Apostila09/Apostila09.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila09-Exercicios/Apostila09-Exercicios.iml" filepath="$PROJECT_DIR$/Apostila09-Exercicios/Apostila09-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila10/Apostila10.iml" filepath="$PROJECT_DIR$/Apostila10/Apostila10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila11/Apostila11.iml" filepath="$PROJECT_DIR$/Apostila11/Apostila11.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Apostila11-Exercicios/Apostila11-Exercicios.iml" filepath="$PROJECT_DIR$/Apostila11-Exercicios/Apostila11-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Array/Array.iml" filepath="$PROJECT_DIR$/Array/Array.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Aula06-Exercicios/Aula06-Exercicios.iml" filepath="$PROJECT_DIR$/Aula06-Exercicios/Aula06-Exercicios.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CP01/CP01.iml" filepath="$PROJECT_DIR$/CP01/CP01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CP02/CP02.iml" filepath="$PROJECT_DIR$/CP02/CP02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Alura/Alura.iml" filepath="$PROJECT_DIR$/Alura/Alura.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila03/Apostila03.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila03/Apostila03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila04/Apostila04.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila04/Apostila04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila04-Exercicios/Apostila04-Exercicios.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila04-Exercicios/Apostila04-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila05/Apostila05.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila05/Apostila05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila05-exercicios/Apostila05-Exercicios.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila05-exercicios/Apostila05-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila06/Apostila06.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila06/Apostila06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila06-Exercicios/Apostila06-Exercicios.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila06-Exercicios/Apostila06-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila07/Apostila07.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila07/Apostila07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila07-Exercicios/Apostila07-Exercicios.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila07-Exercicios/Apostila07-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila08/Apostila08.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila08/Apostila08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila09/Apostila09.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila09/Apostila09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila09-Exercicios/Apostila09-Exercicios.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila09-Exercicios/Apostila09-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/Apostila10/Apostila10.iml" filepath="$PROJECT_DIR$/primeiro semestre/Apostila10/Apostila10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/segundo semestre/Apostila11/Apostila11.iml" filepath="$PROJECT_DIR$/segundo semestre/Apostila11/Apostila11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/segundo semestre/Apostila11-Exercicios/Apostila11-Exercicios.iml" filepath="$PROJECT_DIR$/segundo semestre/Apostila11-Exercicios/Apostila11-Exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Alura/Array/Array.iml" filepath="$PROJECT_DIR$/Alura/Array/Array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/CP01/CP01.iml" filepath="$PROJECT_DIR$/primeiro semestre/CP01/CP01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/CP02/CP02.iml" filepath="$PROJECT_DIR$/primeiro semestre/CP02/CP02.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/screen-match/screen-match.iml" filepath="$PROJECT_DIR$/screen-match/screen-match.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primeiro semestre/primeiro semestre.iml" filepath="$PROJECT_DIR$/primeiro semestre/primeiro semestre.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Alura/screen-match/screen-match.iml" filepath="$PROJECT_DIR$/Alura/screen-match/screen-match.iml" />
+      <module fileurl="file://$PROJECT_DIR$/segundo semestre/segundo semestre.iml" filepath="$PROJECT_DIR$/segundo semestre/segundo semestre.iml" />
     </modules>
   </component>
 </project>
