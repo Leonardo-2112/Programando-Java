@@ -8,6 +8,12 @@ public class Carro {
     private double valor;
     private boolean automatico;
 
+
+    @Override
+    public String toString() {
+        return "\n\nID: "+ id + "\nModelo: " +modelo+ "\nAno: "+ ano + "\nCor: " + cor + "\nValor: " + valor + "\nAutomático: " + automatico;
+    }
+
     //Construtores
     public Carro() {
     }
