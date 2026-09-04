@@ -8,6 +8,13 @@ public class Carro {
     private double valor;
     private boolean automatico;
 
+    public Carro(int ano, String cor, String modelo, double valor, boolean automatico) {
+        this.ano = ano;
+        this.cor = cor;
+        this.modelo = modelo;
+        this.valor = valor;
+        this.automatico = automatico;
+    }
 
     @Override
     public String toString() {

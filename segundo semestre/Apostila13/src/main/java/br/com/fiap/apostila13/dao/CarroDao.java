@@ -22,14 +22,13 @@ public class CarroDao {
     //CRUD
     public void cadastrar(Carro carro) throws SQLException{
         //Criar comando sql de insert
-        PreparedStatement stmt = conexao.prepareStatement("insert into tb_carro (id, ano, cor, modelo, valor, automatico) values(?,?,?,?,?,?)");
+        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO tb_carro (id, ano, cor, modelo, valor, automatico) VALUES(sq_tb_carro.NEXTVAL,?,?,?,?,?)");
         //Atribuir os valores do carro(objeto) no comando SQL
-        stmt.setInt(1, carro.getId());
-        stmt.setInt(2,carro.getAno());
-        stmt.setString(3, carro.getCor());
-        stmt.setString(4, carro.getModelo());
-        stmt.setDouble(5, carro.getValor());
-        stmt.setBoolean(6, carro.isAutomatico());
+        stmt.setInt(1,carro.getAno());
+        stmt.setString(2, carro.getCor());
+        stmt.setString(3, carro.getModelo());
+        stmt.setDouble(4, carro.getValor());
+        stmt.setBoolean(5, carro.isAutomatico());
         //Executar o comando SQL
         stmt.executeUpdate();
     }
@@ -72,12 +71,31 @@ public class CarroDao {
         return carros;
     }
 
-    public Carro atualizar(Carro carro){
-
-        return null;
+    public Carro atualizar(Carro carro) throws SQLException, EntidadeNaoEncontradaException {
+        //Criar o PRepareStament com comando SQL
+        PreparedStatement stmt = conexao.prepareStatement("UPDATE tb_carro SET ano = ?, cor = ?, modelo = ?, valor = ?, automatico = ? WHERE id = ?");
+        //Setar os valores no comando SQL
+        stmt.setInt(1,carro.getAno());
+        stmt.setString(2, carro.getCor());
+        stmt.setString(3, carro.getModelo());
+        stmt.setDouble(4, carro.getValor());
+        stmt.setBoolean(5, carro.isAutomatico());
+        stmt.setInt(6, carro.getId());
+        //Executar o comando SQL
+        int linhas = stmt.executeUpdate();//Retorna a quantidade de linhas afetadas no BD
+        if (linhas==0){
+            throw new EntidadeNaoEncontradaException("Carro não encontrado para atualzação!");
+        }
+        return carro;
     }
 
-    public void deletar(int id){
-
+    public void deletar(int id) throws SQLException, EntidadeNaoEncontradaException {
+        PreparedStatement stmt = conexao.prepareStatement("DELETE FROM tb_carro WHERE id = ?");
+        stmt.setInt(1,id);
+        int linhas = stmt.executeUpdate();
+        //Pega a quantidade de linhas alteradas e vê se houve alteração
+        if (linhas == 0){
+            throw new EntidadeNaoEncontradaException("Carro não encontrado para excluir!");
+        }
     }
 }
