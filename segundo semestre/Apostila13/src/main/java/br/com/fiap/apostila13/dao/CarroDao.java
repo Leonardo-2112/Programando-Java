@@ -22,7 +22,7 @@ public class CarroDao {
     //CRUD
     public void cadastrar(Carro carro) throws SQLException{
         //Criar comando sql de insert
-        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO tb_carro (id, ano, cor, modelo, valor, automatico) VALUES(sq_tb_carro.NEXTVAL,?,?,?,?,?)");
+        PreparedStatement stmt = conexao.prepareStatement("INSERT INTO tb_carro (id, ano, cor, modelo, valor, automatico) VALUES(sq_tb_carro.NEXTVAL,?,?,?,?,?)", new String[] {"id"});
         //Atribuir os valores do carro(objeto) no comando SQL
         stmt.setInt(1,carro.getAno());
         stmt.setString(2, carro.getCor());
@@ -31,6 +31,13 @@ public class CarroDao {
         stmt.setBoolean(5, carro.isAutomatico());
         //Executar o comando SQL
         stmt.executeUpdate();
+
+        //Recuperar o ID gerado pela sequence
+        ResultSet resultSet = stmt.getGeneratedKeys();
+        if (resultSet.next()){
+            int codigo = resultSet.getInt(1);
+            carro.setId(codigo);
+        }
     }
 
     public Carro buscarPorID(int id) throws SQLException, EntidadeNaoEncontradaException {
@@ -42,14 +49,19 @@ public class CarroDao {
             throw new EntidadeNaoEncontradaException("Produto não encontrado");
         }
         //Recuperar os dados do Carro do resultado do SQL
+        return getCarro(resultSet);
+    }
+
+    private static Carro getCarro(ResultSet resultSet) throws SQLException {
         String modelo = resultSet.getString("modelo");
         double valor = resultSet.getDouble("valor");
         int ano = resultSet.getInt("ano");
         String cor = resultSet.getString("cor");
         boolean automatico = resultSet.getBoolean("automatico");
+        int id = resultSet.getInt("id");
 
         //Criar o objeto carro com os valores e retornar
-        return new Carro(id,ano,cor,modelo,valor, automatico);
+        return new Carro(id, ano, cor, modelo, valor, automatico);
     }
 
     public List<Carro> listar() throws SQLException {
@@ -59,14 +71,7 @@ public class CarroDao {
 
         while (resultSet.next()) {
             //Recuperar os dados do Carro do resultado do SQL
-            int id = resultSet.getInt("id");
-            String modelo = resultSet.getString("modelo");
-            double valor = resultSet.getDouble("valor");
-            int ano = resultSet.getInt("ano");
-            String cor = resultSet.getString("cor");
-            boolean automatico = resultSet.getBoolean("automatico");
-            Carro carro = new Carro(id,ano,cor,modelo,valor, automatico);
-            carros.add(carro);
+            carros.add(getCarro(resultSet));
         }
         return carros;
     }
@@ -97,5 +102,20 @@ public class CarroDao {
         if (linhas == 0){
             throw new EntidadeNaoEncontradaException("Carro não encontrado para excluir!");
         }
+    }
+
+    public List<Carro> buscarPorAno(int ano1, int ano2) throws SQLException {
+        PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM tb_carro WHERE ano BETWEEN ? and ?");
+        stmt.setInt(1,ano1);
+        stmt.setInt(2,ano2);
+        ResultSet resultSet = stmt.executeQuery();
+        ArrayList<Carro> carros = new ArrayList<>();
+
+
+        while (resultSet.next()) {
+            //Recuperar os dados do Carro do resultado do SQL
+            carros.add(getCarro(resultSet));
+        }
+        return carros;
     }
 }

@@ -8,6 +8,11 @@ public class Carro {
     private double valor;
     private boolean automatico;
 
+    @Override
+    public String toString() {
+        return "\n\nID: "+ id + "\nModelo: " +modelo+ "\nAno: "+ ano + "\nCor: " + cor + "\nValor: " + valor + "\nAutomático: " + automatico;
+    }
+
     public Carro(int ano, String cor, String modelo, double valor, boolean automatico) {
         this.ano = ano;
         this.cor = cor;
@@ -16,10 +21,6 @@ public class Carro {
         this.automatico = automatico;
     }
 
-    @Override
-    public String toString() {
-        return "\n\nID: "+ id + "\nModelo: " +modelo+ "\nAno: "+ ano + "\nCor: " + cor + "\nValor: " + valor + "\nAutomático: " + automatico;
-    }
 
     //Construtores
     public Carro() {
