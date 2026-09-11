@@ -6,6 +6,12 @@ public class Montadora {
     private String cnpj;
 
     //Construtores
+    public Montadora(int id, String nome, String cnpj) {
+        this.id = id;
+        this.nome = nome;
+        this.cnpj = cnpj;
+    }
+
     public Montadora(String nome, String cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -15,6 +21,10 @@ public class Montadora {
 
     }
 
+    @Override
+    public String toString() {
+        return "\nID: " + id + "\nNome: " + nome + "\nCnpj: " + cnpj;
+    }
 
     //Getters e Setters
     public int getId() {
@@ -41,4 +51,3 @@ public class Montadora {
         this.cnpj = cnpj;
     }
 }
-
