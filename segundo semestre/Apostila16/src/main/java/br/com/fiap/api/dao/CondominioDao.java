@@ -18,6 +18,9 @@ public class CondominioDao {
     private final String select_sql = "select * from tb_condominio";
     private final String insert_sql = "INSERT INTO tb_condominio(cd_condominio, nm_condominio,ds_bloco) VALUES(sq_tb_condominio.NEXTVAL,?,?)";
     private final String buscar_por_id_sql = "select * from tb_condominio where cd_condominio = ?";
+    private final String delete_sql = "delete from tb_condominio where cd_condominio = ?";
+    private final String update_sql = "update tb_condominio set nm_condominio = ?, ds_bloco = ? where cd_condominio = ?";
+
     public CondominioDao(DataSource dataSource){
         this.dataSource = dataSource;
     }
@@ -63,6 +66,31 @@ public class CondominioDao {
                 throw new EntidadeNaoEncontradaException("Condomínio não encontrado");
             }
             return getCondominio(resultSet);
+        }
+    }
+
+    public void remover(int id) throws SQLException, EntidadeNaoEncontradaException {
+        try(Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(delete_sql)) {
+            stmt.setInt(1, id);
+
+            int linhas = stmt.executeUpdate();
+            if (linhas == 0) {
+                throw new EntidadeNaoEncontradaException("Condomínio não encontrado para exclusão!");
+            }
+        }
+    }
+
+    public void atualizar(Condominio condominio) throws SQLException, EntidadeNaoEncontradaException {
+        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(update_sql)){
+            stmt.setString(1, condominio.getNome());
+            stmt.setString(2, condominio.getBloco());
+            stmt.setInt(3, condominio.getId());
+            int linhas = stmt.executeUpdate();
+
+            if (linhas == 0){
+                throw new EntidadeNaoEncontradaException("Condominio não encontrado para atualização!");
+            }
+
         }
     }
 

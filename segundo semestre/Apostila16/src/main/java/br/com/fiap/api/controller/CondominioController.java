@@ -42,6 +42,19 @@ public class CondominioController {
         return ResponseEntity.ok(condominio);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>remover(@PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
+        dao.remover(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void>atualizar(@PathVariable int id, @RequestBody Condominio condominio) throws EntidadeNaoEncontradaException, SQLException {
+        condominio.setId(id);
+        dao.atualizar(condominio);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("churros")
     public String dizerOla(){
         return "Ola Mundo!";
