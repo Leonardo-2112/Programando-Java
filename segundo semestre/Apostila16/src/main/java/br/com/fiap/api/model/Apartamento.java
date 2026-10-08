@@ -3,41 +3,47 @@ package br.com.fiap.api.model;
 import java.time.LocalDate;
 
 public class Apartamento {
+
     private int id;
+    private int numero;
     private double area;
-    private int numeroDoApartamento;
     private LocalDate dataOcupacao;
-    private boolean estaOcupado;
+    private boolean ocupado;
     private Condominio condominio;
 
-    //Construtores
-    public Apartamento(int id, double area, int numeroDoApartamento, LocalDate dataOcupacao, boolean estaOcupado, Condominio condominio) {
-        this.id = id;
+    public Apartamento(){}
+
+    public Apartamento(int numero, double area, LocalDate dataOcupacao, boolean ocupado, Condominio condominio) {
+        this.numero = numero;
         this.area = area;
-        this.numeroDoApartamento = numeroDoApartamento;
         this.dataOcupacao = dataOcupacao;
-        this.estaOcupado = estaOcupado;
+        this.ocupado = ocupado;
         this.condominio = condominio;
     }
 
-    public Apartamento(double area, int numeroDoApartamento, LocalDate dataOcupacao, boolean estaOcupado, Condominio condominio) {
+    public Apartamento(int codigo, int numero, double area, LocalDate dataOcupacao, boolean ocupado, Condominio condominio) {
+        this.id = codigo;
+        this.numero = numero;
         this.area = area;
-        this.numeroDoApartamento = numeroDoApartamento;
         this.dataOcupacao = dataOcupacao;
-        this.estaOcupado = estaOcupado;
+        this.ocupado = ocupado;
         this.condominio = condominio;
     }
 
-    public Apartamento() {
-    }
-
-    //Getters e Setters
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public double getArea() {
@@ -48,14 +54,6 @@ public class Apartamento {
         this.area = area;
     }
 
-    public int getNumeroDoApartamento() {
-        return numeroDoApartamento;
-    }
-
-    public void setNumeroDoApartamento(int numeroDoApartamento) {
-        this.numeroDoApartamento = numeroDoApartamento;
-    }
-
     public LocalDate getDataOcupacao() {
         return dataOcupacao;
     }
@@ -64,12 +62,12 @@ public class Apartamento {
         this.dataOcupacao = dataOcupacao;
     }
 
-    public boolean isEstaOcupado() {
-        return estaOcupado;
+    public boolean isOcupado() {
+        return ocupado;
     }
 
-    public void setEstaOcupado(boolean estaOcupado) {
-        this.estaOcupado = estaOcupado;
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
 
     public Condominio getCondominio() {

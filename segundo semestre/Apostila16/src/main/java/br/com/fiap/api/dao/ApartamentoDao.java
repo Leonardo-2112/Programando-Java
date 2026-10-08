@@ -2,53 +2,77 @@ package br.com.fiap.api.dao;
 
 import br.com.fiap.api.model.Apartamento;
 import br.com.fiap.api.model.Condominio;
-
+import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Repository
 public class ApartamentoDao {
-    private final DataSource dataSource;
 
-    private static final String INSERT_SQL = "insert into tb_apartamento (cd_apartamento, nr_area, nr_apartamento, dt_ocupado, st_ocupacao, cd_condominio) values(sq_tb_apartamento.nextval, ?,?,?,?,?)";
+    private DataSource dataSource;
 
+    private static final String INSERT_SQL = "insert into tb_apartamento (cd_apartamento, nr_area, " +
+            "nr_apartamento, dt_ocupacao, st_ocupado, cd_condominio) values (sq_tb_apartamento.nextval, ?, ?, ?, ?, ?)";
 
+    private static final String SELECT_SQL = "select * from tb_apartamento";
+    private static final String SELECT_BY_ID = "select * from tb_apartamento where cd_condominio = ?";
 
-    public ApartamentoDao(DataSource dataSource){
+    public ApartamentoDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
     private Apartamento getApartamento(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("cd_apartamento");
-        double area = resultSet.getDouble("nr_apartamento");
         int numeroApartamento = resultSet.getInt("nr_apartamento");
+        double area = resultSet.getDouble("nr_area");
         LocalDate dataOcupacao = resultSet.getObject("dt_ocupacao", LocalDate.class);
-        boolean estaOcupado = resultSet.getBoolean("st_ocupado");
-        Apartamento ap = new Apartamento();
-        ap.setId(id);
+        boolean ocupado = resultSet.getBoolean("st_ocupado");
         int idCondominio = resultSet.getInt("cd_condominio");
 
-        return new Apartamento(id, area, numeroApartamento, dataOcupacao, estaOcupado, condominio);
+        return new Apartamento(id, numeroApartamento, area, dataOcupacao, ocupado, new Condominio(idCondominio));
     }
 
-    public void inserir(Apartamento ap) throws SQLException {
-        try(Connection conexao = dataSource.getConnection();
-            PreparedStatement stmt = conexao.prepareStatement(INSERT_SQL, new String[] {"cd_condominio"})){
-            stmt.setDouble(1, ap.getArea());
-            stmt.setInt(2, ap.getNumeroDoApartamento());
-            stmt.setObject(3,ap.getDataOcupacao());
-            stmt.setBoolean(4, ap.isEstaOcupado());
-            stmt.setInt(5,ap.getCondominio().getId());
 
-            stmt.executeUpdate();
-            ResultSet resultSet = stmt.getGeneratedKeys();
-
-            if (resultSet.next()){
-                ap.setId(resultSet.getInt(1));
-            }
+    public List<Apartamento> listar() throws SQLException {
+        try(Connection conexao = dataSource.getConnection(); PreparedStatement stmt = conexao.prepareStatement(SELECT_SQL)){
+            ResultSet resultSet = stmt.executeQuery();
+            List<Apartamento> lista = new ArrayList<>();
+            while (resultSet.next())
+                lista.add(getApartamento(resultSet));
+            return lista;
         }
     }
+
+    public void cadastrar(Apartamento ap) throws SQLException {
+        try (Connection conexao = dataSource.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(INSERT_SQL, new String[] {"cd_condominio"})){
+            stmt.setDouble(1, ap.getArea());
+            stmt.setInt(2, ap.getNumero());
+            stmt.setObject(3, ap.getDataOcupacao());
+            stmt.setBoolean(4, ap.isOcupado());
+            stmt.setInt(5, ap.getCondominio().getId());
+            stmt.executeUpdate();
+            ResultSet resultSet = stmt.getGeneratedKeys();
+            if (resultSet.next())
+                ap.setId(resultSet.getInt(1));
+        }
+    }
+
+    public List<Apartamento> listarApartamentosDoCondominio(int id) throws SQLException {
+        try(Connection conexao = dataSource.getConnection(); PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_ID)){
+            ResultSet resultSet = stmt.executeQuery();
+            List<Apartamento> lista = new ArrayList<>();
+            while (resultSet.next())
+                lista.add(getApartamento(resultSet));
+            return lista;
+        }
+    }
+
 }
+
+

@@ -19,6 +19,11 @@ public class Condominio {
     public Condominio() {
     }
 
+    public Condominio(int idCondominio) {
+        this.id = idCondominio;
+    }
+
+
     public int getId() {
         return id;
     }

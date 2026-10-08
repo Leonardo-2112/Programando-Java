@@ -1,7 +1,9 @@
 package br.com.fiap.api.controller;
 
 import br.com.fiap.api.dao.ApartamentoDao;
+import br.com.fiap.api.exception.EntidadeNaoEncontradaException;
 import br.com.fiap.api.model.Apartamento;
+import br.com.fiap.api.model.Condominio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -11,26 +13,29 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/apartamentos")
+@RequestMapping("apartamentos")
 public class ApartamentoController {
+
     private ApartamentoDao dao;
 
-    public ApartamentoController(ApartamentoDao dao){
+    public ApartamentoController(ApartamentoDao dao) {
         this.dao = dao;
     }
 
-    @PostMapping
-    public ResponseEntity<Apartamento> inserir(@RequestBody Apartamento apartamento, UriComponentsBuilder builder) throws SQLException {
-
-        dao.inserir(apartamento);
-        URI uri = builder.path("/apartamentos/{id}").buildAndExpand(apartamento.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(apartamento);
-    }
 
     @GetMapping
-    public List<Apartamento> listar(){
+    public List<Apartamento> listar() throws SQLException {
         return dao.listar();
-
     }
+
+    @PostMapping
+    public ResponseEntity<Apartamento> cadastrar(@RequestBody Apartamento ap,
+                                                 UriComponentsBuilder builder) throws SQLException {
+        dao.cadastrar(ap);
+        URI uri = builder.path("/apartamentos/{id}").buildAndExpand(ap.getId()).toUri();
+        return ResponseEntity.created(uri).body(ap);
+    }
+
+
+
 }
