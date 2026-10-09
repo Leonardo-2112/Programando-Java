@@ -63,8 +63,11 @@ public class ApartamentoDao {
         }
     }
 
-    public List<Apartamento> listarApartamentosDoCondominio(int id) throws SQLException {
-        try(Connection conexao = dataSource.getConnection(); PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_ID)){
+    public List<Apartamento> listarApartamentosDoCondominio(int idCondominio) throws SQLException {
+        try(Connection conexao = dataSource.getConnection();
+            PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_ID)){
+            stmt.setInt(1,idCondominio);
+
             ResultSet resultSet = stmt.executeQuery();
             List<Apartamento> lista = new ArrayList<>();
             while (resultSet.next())

@@ -36,6 +36,4 @@ public class ApartamentoController {
         return ResponseEntity.created(uri).body(ap);
     }
 
-
-
 }

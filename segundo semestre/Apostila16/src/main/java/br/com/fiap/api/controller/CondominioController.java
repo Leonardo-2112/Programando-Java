@@ -1,9 +1,14 @@
 package br.com.fiap.api.controller;
 
+import br.com.fiap.api.dao.ApartamentoDao;
 import br.com.fiap.api.dao.CondominioDao;
+import br.com.fiap.api.dto.CondominioRequestDto;
+import br.com.fiap.api.dto.CondominioResponseDto;
 import br.com.fiap.api.exception.EntidadeNaoEncontradaException;
+import br.com.fiap.api.model.Apartamento;
 import br.com.fiap.api.model.Condominio;
 import org.apache.coyote.Response;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -16,43 +21,62 @@ import java.util.List;
 @RequestMapping("/condominios")
 public class CondominioController {
 
-    private CondominioDao dao;
+    private CondominioDao CondominioDao;
+    private ApartamentoDao apartamentoDao;
+    private ModelMapper mapper;
 
-    public CondominioController(CondominioDao dao){
-        this.dao = dao;
+    public CondominioController(CondominioDao dao, ApartamentoDao apartamentoDao, ModelMapper mapper){
+        this.CondominioDao = dao;
+        this.apartamentoDao=apartamentoDao;
+        this.mapper= mapper;
     }
 
     @PostMapping
-    public ResponseEntity<Condominio>inserir(@RequestBody Condominio condominio, UriComponentsBuilder uriBuilder) throws SQLException {
+    public ResponseEntity<CondominioResponseDto>inserir(@RequestBody CondominioRequestDto condominioDto, UriComponentsBuilder uriBuilder) throws SQLException {
 
-        dao.inserir(condominio);
+        Condominio condominio = mapper.map(condominioDto,Condominio.class);
+
+        CondominioDao.inserir(condominio);
         URI uri = uriBuilder.path("/condominios/{id}").buildAndExpand(condominio.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(condominio);
+        return ResponseEntity.created(uri).body(mapper.map(condominio,CondominioResponseDto.class));
     }
 
     @GetMapping
-    public List<Condominio>listar() throws SQLException {
-        return dao.listar();
+    public List<CondominioResponseDto>listar() throws SQLException {
+
+
+        return CondominioDao.listar()
+                .stream()
+                .map(condominio -> mapper.map(condominio, CondominioResponseDto.class)).toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Condominio>buscarPorId(@PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
-        Condominio condominio = dao.buscarPorId(id);
-        return ResponseEntity.ok(condominio);
+    public ResponseEntity<CondominioResponseDto>buscarPorId(@PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
+
+        Condominio condominio = CondominioDao.buscarPorId(id);
+        return ResponseEntity.ok(mapper.map(condominio,CondominioResponseDto.class));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>remover(@PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
-        dao.remover(id);
+        CondominioDao.remover(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void>atualizar(@PathVariable int id, @RequestBody Condominio condominio) throws EntidadeNaoEncontradaException, SQLException {
+    public ResponseEntity<Void>atualizar(@PathVariable int id, @RequestBody CondominioRequestDto condominiodto) throws EntidadeNaoEncontradaException, SQLException {
+        Condominio condominio = mapper.map(condominiodto, Condominio.class);
         condominio.setId(id);
-        dao.atualizar(condominio);
+        CondominioDao.atualizar(condominio);
         return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping("/{id}/apartamentos")
+    public List<Apartamento>listarApartamentoPorCondominio(@PathVariable int id) throws SQLException {
+        return apartamentoDao.listarApartamentosDoCondominio(id);
+
+
     }
 
     @GetMapping("churros")
