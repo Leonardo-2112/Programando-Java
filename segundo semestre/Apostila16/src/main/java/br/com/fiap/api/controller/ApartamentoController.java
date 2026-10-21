@@ -7,6 +7,7 @@ import br.com.fiap.api.dto.CondominioResponseDto;
 import br.com.fiap.api.exception.EntidadeNaoEncontradaException;
 import br.com.fiap.api.model.Apartamento;
 import br.com.fiap.api.model.Condominio;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class ApartamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<ApartamentoResponseDto> cadastrar(@RequestBody ApartamentoRequestDto dto,
+    public ResponseEntity<ApartamentoResponseDto> cadastrar(@Valid @RequestBody ApartamentoRequestDto dto,
                                                  UriComponentsBuilder builder) throws SQLException {
         Apartamento apartamento = mapper.map(dto, Apartamento.class);
 

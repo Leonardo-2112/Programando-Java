@@ -7,6 +7,7 @@ import br.com.fiap.api.dto.CondominioResponseDto;
 import br.com.fiap.api.exception.EntidadeNaoEncontradaException;
 import br.com.fiap.api.model.Apartamento;
 import br.com.fiap.api.model.Condominio;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class CondominioController {
     }
 
     @PostMapping
-    public ResponseEntity<CondominioResponseDto>inserir(@RequestBody CondominioRequestDto condominioDto, UriComponentsBuilder uriBuilder) throws SQLException {
+    public ResponseEntity<CondominioResponseDto>inserir(@Valid @RequestBody CondominioRequestDto condominioDto, UriComponentsBuilder uriBuilder) throws SQLException {
 
         Condominio condominio = mapper.map(condominioDto,Condominio.class);
 
@@ -51,7 +52,7 @@ public class CondominioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CondominioResponseDto>buscarPorId(@PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
+    public ResponseEntity<CondominioResponseDto>buscarPorId(@Valid @PathVariable int id) throws EntidadeNaoEncontradaException, SQLException {
 
         Condominio condominio = CondominioDao.buscarPorId(id);
         return ResponseEntity.ok(mapper.map(condominio,CondominioResponseDto.class));
@@ -64,7 +65,7 @@ public class CondominioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void>atualizar(@PathVariable int id, @RequestBody CondominioRequestDto condominiodto) throws EntidadeNaoEncontradaException, SQLException {
+    public ResponseEntity<Void>atualizar(@Valid @PathVariable int id, @RequestBody CondominioRequestDto condominiodto) throws EntidadeNaoEncontradaException, SQLException {
         Condominio condominio = mapper.map(condominiodto, Condominio.class);
         condominio.setId(id);
         CondominioDao.atualizar(condominio);
